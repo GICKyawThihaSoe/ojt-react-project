@@ -1,69 +1,94 @@
 import React from "react";
+import banner from "../assets/bg.svg";
+import pt1 from "../assets/photo1.svg";
+import star from "../assets/star.svg";
 
 const Main = () => {
-  const backgroundImageUrl = "/src/assets/logo-react2.svg"; // Replace with your image URL
   return (
-    <div
-      className="bg-black2 min-h-screen p-8"
-      style={{
-        // backgroundSize:"300px",
-        backgroundImage: `url(${backgroundImageUrl})`,
-        backgroundPositionX:"right",
-        backgroundPositionY:"center",
-        backgroundRepeat: "no-repeat", // Adjust as needed
-      }}
-    >
-      <h1 className="text-white font-bold text-4xl mb-10 mt-10">
-        Fun facts about React
-      </h1>
-      <ul className="pl-8 list-inside">
-        <li className="relative text-white ml-5" style={{ fontSize: "" }}>
-          <span
-            className="absolute -left-3 -top-5 text-textblue"
-            style={{ transform: "translateX(-1.25rem)", fontSize: "2.5rem" }}
-          >
-            &bull;
-          </span>
-          <div>Was first released in 2013</div>
-        </li>
-        <li className="relative mt-4 text-white ml-5" style={{ fontSize: "" }}>
-          <span
-            className="absolute -left-3 -top-5 text-textblue"
-            style={{ transform: "translateX(-1.25rem)", fontSize: "2.5rem" }}
-          >
-            &bull;
-          </span>
-          <div>Was Originally created by Jordan Walke</div>
-        </li>
-        <li className="relative mt-4 text-white ml-5" style={{ fontSize: "" }}>
-          <span
-            className="absolute -left-3 -top-5 text-textblue"
-            style={{ transform: "translateX(-1.25rem)", fontSize: "2.5rem" }}
-          >
-            &bull;
-          </span>
-          <div>Has well over 100K stars on GitHub</div>
-        </li>
-        <li className="relative mt-4 text-white ml-5" style={{ fontSize: "" }}>
-          <span
-            className="absolute -left-3 -top-5 text-textblue"
-            style={{ transform: "translateX(-1.25rem)", fontSize: "2.5rem" }}
-          >
-            &bull;
-          </span>
-          <div>Is maintained by Facebook</div>
-        </li>
-        <li className="relative mt-4 text-white ml-5" style={{ fontSize: "" }}>
-          <span
-            className="absolute -left-3 -top-5 text-textblue"
-            style={{ transform: "translateX(-1.25rem)", fontSize: "2.5rem" }}
-          >
-            &bull;
-          </span>
-          <div>Powers thousands of enterprise apps, including mobile apps</div>
-        </li>
-      </ul>
-    </div>
+    <>
+      <div className="p-10">
+        <div className="flex justify-center items-center mt-8">
+          <img style={{ width: "800px" }} src={banner} alt="" />
+        </div>
+        <div className="mt-10">
+          <div>
+            <h1 className="text-4xl text-black1 font-bold mb-4">
+              Online Experience
+            </h1>
+            <p className="text-black2 w-72">
+              Join unique interactive activities led by one-of-a-kind hosts—all
+              without leaving home.
+            </p>
+          </div>
+          <div className="mt-16">
+            <div className="flex justify-between">
+              <div>
+                <div className="relative">
+                  <img src={pt1} alt="" />
+                  <p
+                    className="uppercase absolute p-1 rounded-sm left-1 text-black2 font-medium top-1 bg-white"
+                    style={{ fontSize: "10px" }}
+                  >
+                    sold out
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center mt-1">
+                    <img src={star} alt="" />
+                    <p className="text-sm">
+                      5.0 <span style={{ color: "#918E9B" }}>(6)</span>
+                      <span style={{ color: "#918E9B" }}>.USA</span>
+                    </p>
+                  </div>
+                  <div className="mt-1">
+                    <p className="text-sm" style={{ color: "#222222" }}>
+                      Life lessons with Katie Zaferes
+                    </p>
+                  </div>
+                  <div className="mt-1">
+                    <p className="text-sm">
+                      <span className="font-bold">From $136</span>
+                      <span style={{ color: "#222222" }}>/ person</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div className="relative">
+                  <img src={pt1} alt="" />
+                  <p
+                    className="uppercase absolute p-1 rounded-sm left-1 text-black2 font-medium top-1 bg-white"
+                    style={{ fontSize: "10px" }}
+                  >
+                    sold out
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center mt-1">
+                    <img src={star} alt="" />
+                    <p className="text-sm">
+                      5.0 <span style={{ color: "#918E9B" }}>(6)</span>
+                      <span style={{ color: "#918E9B" }}>.USA</span>
+                    </p>
+                  </div>
+                  <div className="mt-1">
+                    <p className="text-sm" style={{ color: "#222222" }}>
+                      Life lessons with Katie Zaferes
+                    </p>
+                  </div>
+                  <div className="mt-1">
+                    <p className="text-sm">
+                      <span className="font-bold">From $136</span>
+                      <span style={{ color: "#222222" }}>/ person</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
