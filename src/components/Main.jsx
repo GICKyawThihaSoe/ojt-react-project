@@ -1,12 +1,12 @@
 import React from "react";
 
 const Main = () => {
-  const backgroundImageUrl = "/src/assets/logo-react.svg"; // Replace with your image URL
+  const backgroundImageUrl = "/src/assets/logo-react2.svg"; // Replace with your image URL
   return (
     <div
       className="bg-black2 min-h-screen p-8"
       style={{
-        backgroundSize:"300px",
+        // backgroundSize:"300px",
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundPositionX:"right",
         backgroundPositionY:"center",
