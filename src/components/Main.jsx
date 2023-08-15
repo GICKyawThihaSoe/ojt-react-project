@@ -2,12 +2,14 @@ import React, { useState, createRef } from "react";
 import button from "../assets/button.svg";
 import { fetchMemes } from "../api/api";
 import { exportComponentAsJPEG } from "react-component-export-image";
+import Draggable from "react-draggable";
 
 const Main = () => {
   const [MemeImage, setMemeImage] = useState(null);
   const [MemeTopText, setMemeTopText] = useState("");
   const [MemeBottomText, setMemeBottomText] = useState("");
   const memeRef = createRef();
+  
   const getMemeImage = async () => {
     try {
       const memesArray = await fetchMemes();
@@ -51,20 +53,28 @@ const Main = () => {
         <div>
           {MemeImage !== null && (
             <div className="flex justify-center">
-              <div ref={memeRef} className="mt-5 relative w-80 h-72 border">
+              <div ref={memeRef} className="mt-5 relative w-80 h-full border">
                 <img className="w-full h-full" src={MemeImage} alt="" />
                 <div
                   style={{ textShadow: "3px 3px #000" }}
-                  className="absolute text-center p-2 w-80 text-white top-10 text-4xl font-bold font-serif break-words overflow-hidden"
+                  className="absolute text-center p-2 w-full h-full text-white top-0 text-4xl font-bold font-serif break-words overflow-hidden"
                 >
                   <div>
-                    {MemeTopText == "" ? <p>Top Text</p> : <p>{MemeTopText}</p>}
+                    {MemeTopText == "" ? (
+                      <p>Top Text</p>
+                    ) : (
+                      <Draggable>
+                        <p>{MemeTopText}</p>
+                      </Draggable>
+                    )}
                   </div>
                   <div className="mt-2">
                     {MemeBottomText == "" ? (
                       <p>Bottom Text</p>
                     ) : (
-                      <p>{MemeBottomText}</p>
+                      <Draggable>
+                        <p>{MemeBottomText}</p>
+                      </Draggable>
                     )}
                   </div>
                 </div>
