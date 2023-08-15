@@ -1,92 +1,78 @@
-import React from "react";
-import banner from "../assets/bg.svg";
-import pt1 from "../assets/photo1.svg";
-import star from "../assets/star.svg";
+import React, { useState,useRef } from "react";
+import button from "../assets/button.svg";
+import { fetchMemes } from "../api/api";
 
 const Main = () => {
+  const [MemeImage, setMemeImage] = useState(null);
+  const [MemeTopText, setMemeTopText] = useState("");
+  const [MemeBottomText, setMemeBottomText] = useState("");
+  const canvasRef = useRef(null);
+
+  const getMemeImage = async () => {
+    try {
+      const memesArray = await fetchMemes();
+      const randomNumber = Math.floor(Math.random() * memesArray.length);
+      const url = memesArray[randomNumber].url;
+      setMemeImage(url);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
   return (
     <>
-      <div className="p-10">
-        <div className="flex justify-center items-center mt-8">
-          <img style={{ width: "800px" }} src={banner} alt="" />
+      <div className="mt-5 p-5">
+        <div className="flex justify-center">
+          <input
+            type="text"
+            placeholder="Top text"
+            className="border px-2 border-gray outline-none p-1 rounded mr-5 w-60"
+            onChange={(e) => {
+              setMemeTopText(e.target.value);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Bottom text"
+            className="border px-2 border-gray outline-none p-1 rounded w-60"
+            onChange={(e) => {
+              setMemeBottomText(e.target.value);
+            }}
+          />
         </div>
-        <div className="mt-10">
-          <div>
-            <h1 className="text-4xl text-black1 font-bold mb-4">
-              Online Experience
-            </h1>
-            <p className="text-black2 w-72">
-              Join unique interactive activities led by one-of-a-kind hosts—all
-              without leaving home.
-            </p>
-          </div>
-          <div className="mt-16">
-            <div className="flex justify-between">
+        <div className="mt-4 flex justify-center">
+          <button
+            onClick={getMemeImage}
+            className="bg-purple p-1 py-3 flex justify-center text-white rounded w-72"
+          >
+            <img src={button} alt="" />
+          </button>
+        </div>
+        {MemeImage !== null && (
+          <div className="flex justify-center mt-5 relative">
+            <img className="w-80 h-72 border" src={MemeImage} alt="" />
+            <div
+              style={{ textShadow: "3px 3px #000" }}
+              className="absolute text-center p-2 w-80 h-72 text-white top-10 text-4xl font-bold font-serif break-words overflow-hidden"
+            >
               <div>
-                <div className="relative">
-                  <img src={pt1} alt="" />
-                  <p
-                    className="uppercase absolute p-1 rounded-sm left-1 text-black2 font-medium top-1 bg-white"
-                    style={{ fontSize: "10px" }}
-                  >
-                    sold out
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center mt-1">
-                    <img src={star} alt="" />
-                    <p className="text-sm">
-                      5.0 <span style={{ color: "#918E9B" }}>(6)</span>
-                      <span style={{ color: "#918E9B" }}>.USA</span>
-                    </p>
-                  </div>
-                  <div className="mt-1">
-                    <p className="text-sm" style={{ color: "#222222" }}>
-                      Life lessons with Katie Zaferes
-                    </p>
-                  </div>
-                  <div className="mt-1">
-                    <p className="text-sm">
-                      <span className="font-bold">From $136</span>
-                      <span style={{ color: "#222222" }}>/ person</span>
-                    </p>
-                  </div>
-                </div>
+                {MemeTopText == "" ? <p>Top Text</p> : <p>{MemeTopText}</p>}
               </div>
-              <div>
-                <div className="relative">
-                  <img src={pt1} alt="" />
-                  <p
-                    className="uppercase absolute p-1 rounded-sm left-1 text-black2 font-medium top-1 bg-white"
-                    style={{ fontSize: "10px" }}
-                  >
-                    sold out
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center mt-1">
-                    <img src={star} alt="" />
-                    <p className="text-sm">
-                      5.0 <span style={{ color: "#918E9B" }}>(6)</span>
-                      <span style={{ color: "#918E9B" }}>.USA</span>
-                    </p>
-                  </div>
-                  <div className="mt-1">
-                    <p className="text-sm" style={{ color: "#222222" }}>
-                      Life lessons with Katie Zaferes
-                    </p>
-                  </div>
-                  <div className="mt-1">
-                    <p className="text-sm">
-                      <span className="font-bold">From $136</span>
-                      <span style={{ color: "#222222" }}>/ person</span>
-                    </p>
-                  </div>
-                </div>
+              <div className="mt-2">
+                {MemeBottomText == "" ? (
+                  <p>Bottom Text</p>
+                ) : (
+                  <p>{MemeBottomText}</p>
+                )}
               </div>
             </div>
           </div>
-        </div>
+        )}
+        {/* <div className="text-center">
+          <button onClick={handleDownload} className="bg-purple p-2 text-white rounded mt-2 font-bold">
+            Download
+          </button>
+        </div> */}
       </div>
     </>
   );

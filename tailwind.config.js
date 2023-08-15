@@ -3,9 +3,14 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     colors: {
+      purple: {
+        DEFAULT: "#A626D3", // You can set the default solid color
+        dark: "#672280",
+      },
       black1: "#000000",
       black2: "#222222",
-      white:"#FFFFFF",
+      white: "#FFFFFF",
+      gray:"#D5D4D8",
     },
     extend: {
       boxShadow: {
