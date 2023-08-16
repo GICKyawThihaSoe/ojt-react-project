@@ -9,7 +9,10 @@ export default {
       textblue:'#00B4D5',
       black:'#21222A',
       white:'#fff',
-      black2:'#282D35'
+      black2:'#282D35',
+      gray:'#F5F5F5',
+      blue:'#5035FF',
+      blue2:'#422fc2',
     },
     extend: {},
   },
