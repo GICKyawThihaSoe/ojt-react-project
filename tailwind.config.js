@@ -16,6 +16,7 @@ export default {
       activeblue:'#5567bd',
       bordercolor:'#4D5B9E',
       hrcolor:'#DBDEF0',
+      error:'red',
     },
     extend: {},
   },

@@ -5,12 +5,14 @@ import Question from "./components/Question";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/question" element={<Question />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/question" element={<Question />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 

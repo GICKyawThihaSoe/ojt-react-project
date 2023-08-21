@@ -8,7 +8,7 @@ const Main = () => {
         <div className="text-center">
           <h1 className="text-4xl font-bold text-textblue mb-3">Quizzical</h1>
           <p className="text-textblue mb-5 tracking-wider">
-            Some description if needed
+            Questions about technology
           </p>
           <div className="flex justify-center items-center">
             <Link to="/question">

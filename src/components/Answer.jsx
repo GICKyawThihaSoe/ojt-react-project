@@ -1,33 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCount, removeCount } from "../feature/countSlice";
+import { openError } from "../feature/checkAnswerSlice";
 
 const Answer = (props) => {
-  const allAnswers = [...props.incorrect_answers, props.correct_answer];
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [answeredQuestions, setAnsweredQuestions] = useState(0);
-  const [incorrectCount, setIncorrectCount] = useState(0);
+  const [answeredIncorrectly, setAnsweredIncorrectly] = useState(false);
+  const { isCheck } = useSelector((state) => state.check);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    shuffleAnswers();
+  }, [props.correct_answer]);
+
+  const shuffleAnswers = () => {
+    const allAnswers = [...props.incorrect_answers, props.correct_answer];
+    for (let i = allAnswers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allAnswers[i], allAnswers[j]] = [allAnswers[j], allAnswers[i]];
+    }
+    setShuffledAnswers(allAnswers);
+  };
+
+  if (isCheck) {
+    if (!selectedAnswer) {
+      dispatch(openError());
+    }
+  }
 
   const handleAnswerClick = (clickedAnswer) => {
-    console.log("User clicked:", clickedAnswer);
     setSelectedAnswer(clickedAnswer);
-    setAnsweredQuestions((prevCount) => prevCount + 1);
-
-    if (clickedAnswer !== props.correct_answer) {
-      setIncorrectCount((prevCount) => prevCount + 1);
+    if (clickedAnswer !== props.correct_answer && !answeredIncorrectly) {
+      dispatch(addCount());
+      setAnsweredIncorrectly(true);
     }
-    if (answeredQuestions === totalQuestions) {
-      console.log(
-        `You scored ${correctAnswers}/${totalQuestions} correct answers`
-      );
-    } else if (answeredQuestions > totalQuestions) {
-      console.error("Error: Answered more questions than available");
+    if (clickedAnswer === props.correct_answer && answeredIncorrectly) {
+      dispatch(removeCount());
+      setAnsweredIncorrectly(false);
     }
   };
 
-  const totalQuestions = allAnswers?.length;
-  const correctAnswers = totalQuestions - incorrectCount;
+
   return (
     <div className="grid grid-cols-4 gap-4 mt-6">
-      {allAnswers.map((answer, index) => (
+      {shuffledAnswers.map((answer, index) => (
         <p
           key={index}
           onClick={() => handleAnswerClick(answer)}
