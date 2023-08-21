@@ -1,15 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./components/Main";
-import Question from "./components/Question";
+import ResponsiveNavbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/question" element={<Question />} />
-      </Routes>
+      <ResponsiveNavbar/>
+      <Main/>
+      <Footer/>
     </Router>
   );
 }
